@@ -33,7 +33,9 @@ describe('links are visible', () => {
         //arrange
         const { getByTestId } = render(<Nav />);
         //assert
+        // eslint-disable-next-line testing-library/prefer-screen-queries
         expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
+        // eslint-disable-next-line testing-library/prefer-screen-queries
         expect(getByTestId('about')).toHaveTextContent('About Me');
     });
 });
