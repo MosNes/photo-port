@@ -29,7 +29,7 @@ const Nav = () => {
 	return (
 		<header data-testid="header" className="flex-row px-1">
 			<h2>
-				<a href="/">
+				<a data-testid="link" href="/">
 					<span role="img" aria-label="camera">
 						📸
 					</span>
@@ -39,7 +39,7 @@ const Nav = () => {
 			<nav>
 				<ul className="flex-row">
 					<li className="mx-2">
-						<a href="#about">About Me</a>
+						<a data-testid="about" href="#about">About Me</a>
 					</li>
 					<li>
 						<span>Contact</span>
