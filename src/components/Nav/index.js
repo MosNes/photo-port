@@ -12,6 +12,8 @@ const Nav = (props) => {
 	useEffect(() => {
 		document.title = capitalizeFirstLetter(currentCategory.name);
 	}, [currentCategory])
+
+	console.log('Current Category', currentCategory);
 	
 	return (
 		<header data-testid="header" className="flex-row px-1">

@@ -17,7 +17,7 @@ describe('Nav component', () => {
         render(<Nav 
             categories = {categories}
             setCurrentCategory = {mockSetCurrentCategory}
-            currentCateogry = {mockCurrentCategory}
+            currentCategory = {mockCurrentCategory}
         />);
     });
     //snapshot test
@@ -25,7 +25,7 @@ describe('Nav component', () => {
         const { asFragment } = render(<Nav 
             categories = {categories}
             setCurrentCategory = {mockSetCurrentCategory}
-            currentCateogry = {mockCurrentCategory}
+            currentCategory = {mockCurrentCategory}
             />);
         //assert value comparison
         expect(asFragment()).toMatchSnapshot();
@@ -38,7 +38,7 @@ describe('emoji is visible', () => {
         const { getByLabelText } = render(<Nav 
             categories = {categories}
             setCurrentCategory = {mockSetCurrentCategory}
-            currentCateogry = {mockCurrentCategory}
+            currentCategory = {mockCurrentCategory}
         />);
         //Assert
         // eslint-disable-next-line testing-library/prefer-screen-queries
@@ -52,7 +52,7 @@ describe('links are visible', () => {
         const { getByTestId } = render(<Nav 
             categories = {categories}
             setCurrentCategory = {mockSetCurrentCategory}
-            currentCateogry = {mockCurrentCategory}
+            currentCategory = {mockCurrentCategory}
         />);
         //assert
         // eslint-disable-next-line testing-library/prefer-screen-queries
