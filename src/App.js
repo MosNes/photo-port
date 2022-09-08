@@ -38,7 +38,8 @@ function App() {
 		currentCategory={currentCategory}
 	  ></Nav>
 			<main>
-				<Gallery></Gallery>
+				{/* pass current category into gallery */}
+				<Gallery currentCategory={currentCategory}></Gallery>
 				<About></About>
 			</main>
 		</div>

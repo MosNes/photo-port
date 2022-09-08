@@ -1,24 +1,16 @@
 import React from 'react';
 import { capitalizeFirstLetter } from '../../utils/helpers';
-import photo from '../../assets/small/commercial/0.jpg'
+import PhotoList from '../PhotoList';
 
-const Gallery = (props) => {
+const Gallery = ({currentCategory}) => {
 
-    const currentCategory = {
-        name: 'commercial',
-        description: 'Photos of grocery stores, food trucks, and other commercial objects'
-    };
+    const {name, description} = currentCategory;
 
     return(
         <section>
-            <h1>{capitalizeFirstLetter(currentCategory.name)}</h1>
-            <p>{currentCategory.description}</p>
-            <div>
-                <img src={photo}
-                alt='Commercial Example'
-                className='img-thumbnail-1'
-                />
-            </div>
+            <h1>{capitalizeFirstLetter(name)}</h1>
+            <p>{description}</p>
+            <PhotoList category={currentCategory.name}/>
         </section>
     );
 }
