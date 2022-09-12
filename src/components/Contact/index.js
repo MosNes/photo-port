@@ -1,23 +1,61 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { validateEmail } from '../../utils/helpers';
 
 function ContactForm() {
 
+    //-------------------STATE VARIABLES------------------------------------------------------
+
     //sets initial default state of input fields to empty values
-    const [formState, setFormState] = useState({ name: '', email: '', message: ''});
+    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+    //Sets error message as empty string by default
+    const [errorMessage, setErrorMessage] = useState('');
+
     //destructure formState into 3 variables
     const { name, email, message } = formState;
 
+    //-------------------EVENT HANDLERS-------------------------------------------------------
+
     //create changeHandler to sync the values for the input fields to the current state
     function handleChange(e) {
+
+        //validate input
+        //if change comes from email field
+        if (e.target.name === 'email'){
+            //run email validation helper function
+            const isValid = validateEmail(e.target.value);
+            console.log(isValid);
+            //set error message content if email is invalid
+            if (!isValid){
+                setErrorMessage('Your Email is Invalid.');
+            } else {
+                setErrorMessage('');
+            }
+        //if change comes from other two fields
+        } else {
+            //if field is empty (length = 0)
+            if (!e.target.value.length){
+                setErrorMessage(`${e.target.name} is required.`);
+            } else {
+                setErrorMessage('');
+            }
+        }
+
+        //only update the state if the error message is empty
+        if (!errorMessage){
         //use spread operator to retain all key-value pairs, otherwise formState would be overwritten to contain only the single key-value defined here
         // [e.target.name] dynamically generates the property name and matching value
-        setFormState({...formState, [e.target.name]: e.target.value})
+        setFormState({ ...formState, [e.target.name]: e.target.value })
+        
+        }
+        
     }
 
     function handleSubmit(e) {
         e.preventDefault();
         console.log(formState);
-      }
+    }
+
+    //----------COMPONENT-----------------------------------------------------------------
 
     return (
         <section>
@@ -34,7 +72,7 @@ function ContactForm() {
                 </div>
                 <div>
                     <label htmlFor="message">Message:</label>
-                    <textarea name="message" rows="5" defaultValue={message} onChange={handleChange}/>
+                    <textarea name="message" rows="5" defaultValue={message} onChange={handleChange} />
                 </div>
                 <button type="submit">Submit</button>
             </form>
