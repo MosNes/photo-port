@@ -22,6 +22,7 @@ function ContactForm() {
     return (
         <section>
             <h1>Contact Me</h1>
+            {/* on submit needs to be added to the form element, not the submit button element */}
             <form id="contact-form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name:</label>
