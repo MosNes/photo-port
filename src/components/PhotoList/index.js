@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
+import Modal from '../Modal';
 
 
 //destructuring category from the props object
 function PhotoList({ category }) {
+
+  //------HOOKS / STATE VARIABLES -----------------------------------------------
+
 	const [photos] = useState([
         {
             name: 'Grocery aisle',
@@ -104,8 +108,24 @@ function PhotoList({ category }) {
     //filter entire array of photos to return only the ones matching the chosen category
     const currentPhotos = photos.filter((photo) => photo.category === category);
 
+  const [currentPhoto, setCurrentPhoto ] = useState();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  //-----EVENT HANDLERS-----------------------------------------------------------
+  
+    //function to toggle modal
+    const toggleModal = (image, i) => {
+      //set current photo
+      setCurrentPhoto({...image, index: i});
+      setIsModalOpen(true);
+    }
+
+  //----------COMPONENT---------------------------------------------------------------
+
 	return (
 		<div>
+      {isModalOpen && <Modal currentPhoto={currentPhoto} />}
 			<div className='flex-row'>
                 {currentPhotos.map((image, i) => (
                     <img
@@ -118,6 +138,7 @@ function PhotoList({ category }) {
                         className='img-thumbnail mx-1'
                         //key for each item in the array, needed for React to update the DOM correctly
                         key={image.name}
+                        onClick={() => toggleModal(image, i)}
                     />
                 ))}
             </div>
