@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import About from './components/About';
 import Nav from './components/Nav';
@@ -6,6 +6,8 @@ import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
 
 function App() {
+
+	const [contactSelected, setContactSelected] = useState(false);
 
 	const [categories] = useState([
 		{
@@ -28,21 +30,29 @@ function App() {
 		},
 	]);
 
-	const [currentCategory, setCurrentCategory]	= useState(categories[0]);
+	const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
 
 	return (
 		<div>
-      <Nav
-	  	categories={categories}
-		setCurrentCategory={setCurrentCategory}
-		currentCategory={currentCategory}
-	  ></Nav>
+			<Nav
+				categories={categories}
+				setCurrentCategory={setCurrentCategory}
+				currentCategory={currentCategory}
+				contactSelected={contactSelected}
+				setContactSelected={setContactSelected}
+			></Nav>
 			<main>
-				<ContactForm></ContactForm>
-				{/* pass current category into gallery */}
-				<Gallery currentCategory={currentCategory}></Gallery>
-				<About></About>
+				{/* if contact form isn't selected, render the Gallery and About, otherwise show contact form */}
+				{!contactSelected ? (
+					// wrap multiple components with empty <></> (react fragment) since JSX must return a single parent element
+					<>
+						<Gallery currentCategory={currentCategory}></Gallery>
+						<About></About>
+					</>
+				) : (
+					<ContactForm></ContactForm>
+				)}
 			</main>
 		</div>
 	);
