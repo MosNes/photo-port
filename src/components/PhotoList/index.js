@@ -118,14 +118,17 @@ function PhotoList({ category }) {
     const toggleModal = (image, i) => {
       //set current photo
       setCurrentPhoto({...image, index: i});
-      setIsModalOpen(true);
+      setIsModalOpen(!isModalOpen);
     }
 
   //----------COMPONENT---------------------------------------------------------------
 
 	return (
 		<div>
-      {isModalOpen && <Modal currentPhoto={currentPhoto} />}
+      {isModalOpen && (
+        // adding a function through an onClose identifier will pass the function as a prop to the child component that can be accessed as onClose
+        <Modal currentPhoto={currentPhoto} onClose={toggleModal} />
+      )}
 			<div className='flex-row'>
                 {currentPhotos.map((image, i) => (
                     <img
